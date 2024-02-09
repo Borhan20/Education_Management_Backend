@@ -1,10 +1,10 @@
-package com.edu_manage.demo;
+package com.edu_manage.education_management;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class DemoApplicationTests {
+class EducationManagementApplicationTests {
 
 	@Test
 	void contextLoads() {
