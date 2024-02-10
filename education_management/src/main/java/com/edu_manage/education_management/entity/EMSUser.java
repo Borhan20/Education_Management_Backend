@@ -1,5 +1,9 @@
 package com.edu_manage.education_management.entity;
 
+import java.util.List;
+import java.util.Set;
+
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Component;
 
 import jakarta.persistence.Entity;
@@ -19,12 +23,13 @@ public class EMSUser {
     private String phone;
     private String name;
     private String password;
-    private String status;
+    private boolean status;
+    // private Set<Role> role;
 
 
         // Getters, setters, constructors
     
-    public EMSUser(Long userId, String email, String phone, String name, String password, String status) {
+    public EMSUser(Long userId, String email, String phone, String name, String password, boolean status) {
         this.userId = userId;
         this.email = email;
         this.phone = phone;
@@ -33,16 +38,19 @@ public class EMSUser {
         this.status = status;
         System.out.println("instance created");
     }
+    public EMSUser() {
+        //TODO Auto-generated constructor stub
+    }
     public Long getUserId() {
         return userId;
     }
     public void setUserId(Long userId) {
         this.userId = userId;
     }
-    public String isStatus() {
+    public boolean isStatus() {
         return status;
     }
-    public void setStatus(String status) {
+    public void setStatus(boolean status) {
         this.status = status;
     }
     public String getEmail() {
@@ -66,9 +74,19 @@ public class EMSUser {
     public String getPassword() {
         return password;
     }
-    public void setPassword(String password) {
-        this.password = password;
+    public void setPassword(String bCryptPasswordEncoder) {
+        this.password = bCryptPasswordEncoder;
     }
+    public List<Role> getRoles() {
+        
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'getRoles'");
+    }
+    // public void setRoles(Set<Role> singleton) {
+    //     this.role = singleton;
+    //     // TODO Auto-generated method stub
+    //     throw new UnsupportedOperationException("Unimplemented method 'setRoles'");
+    // }
 
 
     

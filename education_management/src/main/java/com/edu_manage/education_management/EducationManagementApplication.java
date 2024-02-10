@@ -3,6 +3,7 @@ package com.edu_manage.education_management;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
+
 @SpringBootApplication
 public class EducationManagementApplication {
 

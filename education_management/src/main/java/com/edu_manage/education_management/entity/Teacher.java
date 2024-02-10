@@ -13,7 +13,7 @@ import jakarta.persistence.Table;
 @Entity
 @Table(name = "teacher")
 public class Teacher extends EMSUser{
-    public Teacher(Long userId, String email, String phone, String name, String password, String status) {
+    public Teacher(Long userId, String email, String phone, String name, String password, boolean status) {
         super(userId, email, phone, name, password, status);
         //TODO Auto-generated constructor stub
     }

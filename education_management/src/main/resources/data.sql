@@ -1,1 +1,3 @@
-insert into emsuser values(101,'com@example','015212","anam','anam','student');
+ALTER TABLE emsuser
+ALTER COLUMN status TYPE boolean
+USING status::boolean;
