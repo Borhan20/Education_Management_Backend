@@ -1,4 +1,4 @@
-package com.edu_manage.education_management;
+package com.edu_manage.education_management.entity;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.stereotype.Component;
@@ -8,7 +8,7 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToOne;
 
 @Component
-@Entity
+
 public class Student {
     @Id
     private Long userId;

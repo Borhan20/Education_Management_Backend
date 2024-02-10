@@ -1,4 +1,4 @@
-package com.edu_manage.education_management;
+package com.edu_manage.education_management.entity;
 
 
 
@@ -10,7 +10,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 
 @Component
-@Entity
+
 public class Role {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

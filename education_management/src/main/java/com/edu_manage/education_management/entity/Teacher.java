@@ -1,8 +1,6 @@
-package com.edu_manage.education_management;
+package com.edu_manage.education_management.entity;
 
 import org.springframework.stereotype.Component;
-
-import com.edu_manage.education_management.EMSUser;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
@@ -10,7 +8,7 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToOne;
 
 @Component
-@Entity
+
 public class Teacher {
     @Id
     private Long userId;

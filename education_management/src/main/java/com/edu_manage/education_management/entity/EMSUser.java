@@ -1,4 +1,4 @@
-package com.edu_manage.education_management;
+package com.edu_manage.education_management.entity;
 
 import org.springframework.stereotype.Component;
 
@@ -8,7 +8,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 
 @Component
-@Entity
+
 public class EMSUser {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
