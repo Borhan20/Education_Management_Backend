@@ -4,12 +4,18 @@ import org.springframework.data.annotation.Id;
 import org.springframework.stereotype.Component;
 
 import jakarta.persistence.Entity;
+
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToOne;
+import jakarta.persistence.Table;
 
-@Component
-
-public class Student {
+@Entity
+@Table(name = "student")
+public class Student extends EMSUser {
+    public Student(Long userId, String email, String phone, String name, String password, String status) {
+        super(userId, email, phone, name, password, status);
+        //TODO Auto-generated constructor stub
+    }
     @Id
     private Long userId;
 

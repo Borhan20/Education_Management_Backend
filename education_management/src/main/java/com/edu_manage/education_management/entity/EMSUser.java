@@ -6,9 +6,11 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 
-@Component
 
+@Entity
+@Table(name = "emsuser")
 public class EMSUser {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -17,21 +19,29 @@ public class EMSUser {
     private String phone;
     private String name;
     private String password;
-    private boolean status;
+    private String status;
 
 
         // Getters, setters, constructors
     
+    public EMSUser(Long userId, String email, String phone, String name, String password, String status) {
+        this.userId = userId;
+        this.email = email;
+        this.phone = phone;
+        this.name = name;
+        this.password = password;
+        this.status = status;
+    }
     public Long getUserId() {
         return userId;
     }
     public void setUserId(Long userId) {
         this.userId = userId;
     }
-    public boolean isStatus() {
+    public String isStatus() {
         return status;
     }
-    public void setStatus(boolean status) {
+    public void setStatus(String status) {
         this.status = status;
     }
     public String getEmail() {

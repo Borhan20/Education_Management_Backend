@@ -3,13 +3,20 @@ package com.edu_manage.education_management.entity;
 import org.springframework.stereotype.Component;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToOne;
+import jakarta.persistence.Table;
 
-@Component
-
-public class Teacher {
+@Entity
+@Table(name = "teacher")
+public class Teacher extends EMSUser{
+    public Teacher(Long userId, String email, String phone, String name, String password, String status) {
+        super(userId, email, phone, name, password, status);
+        //TODO Auto-generated constructor stub
+    }
     @Id
     private Long userId;
 
@@ -20,6 +27,9 @@ public class Teacher {
     private String facultyName;
     private String designation;
 
+    
+
+    
     // Getters, setters, constructors
     public Long getUserId() {
         return userId;

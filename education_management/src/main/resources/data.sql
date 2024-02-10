@@ -1,0 +1,1 @@
+insert into emsuser values(101,"com@example","015212","anam","anam","student");
