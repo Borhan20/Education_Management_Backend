@@ -11,7 +11,8 @@ import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "student")
-public class Student extends EMSUser {
+public class Student extends EMSUser{
+    
     public Student(Long userId, String email, String phone, String name, String password, String status) {
         super(userId, email, phone, name, password, status);
         //TODO Auto-generated constructor stub
@@ -27,6 +28,8 @@ public class Student extends EMSUser {
     private Long advisorId;
     private String studentId;
     private String batchNo;
+
+    
 
     // Getters, setters, constructors
     public Long getUserId() {

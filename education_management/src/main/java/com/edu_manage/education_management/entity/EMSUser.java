@@ -31,6 +31,7 @@ public class EMSUser {
         this.name = name;
         this.password = password;
         this.status = status;
+        System.out.println("instance created");
     }
     public Long getUserId() {
         return userId;

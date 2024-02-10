@@ -20,7 +20,9 @@ public class Role {
     private String role;
     private String description;
 
-
+    public Role(){
+        
+    }
     // Getters, setters, constructors
     public Long getRoleId() {
         return roleId;
