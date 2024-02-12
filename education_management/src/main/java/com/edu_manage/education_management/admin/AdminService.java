@@ -1,6 +1,7 @@
 package com.edu_manage.education_management.admin;
 
 import java.util.List;
+import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.ListCrudRepository;
@@ -43,7 +44,7 @@ public class AdminService {
         EMSUser user = userRepository.findById(userId).orElseThrow(() -> new EntityNotFoundException("User not found"));
         Role role = roleRepository.findByRole(roleName).orElseThrow(() -> new EntityNotFoundException("Role not found"));
 
-        user.getRoles().add(role);
+        user.getRole().add(role);
         userRepository.save(user);
     }
 

@@ -1,7 +1,9 @@
 package com.edu_manage.education_management.repository;
 
 import java.util.Optional;
+import java.util.UUID;
 
+import org.springframework.boot.autoconfigure.security.SecurityProperties.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Component;
 
@@ -12,5 +14,9 @@ public interface EMSUserRepository extends JpaRepository<EMSUser, Long> {
 
     Optional<EMSUser> findByEmail(String string);
     // Custom queries if needed
+
+    boolean existsByEmail(String email);
+
+    
 }
 

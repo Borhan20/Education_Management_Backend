@@ -1,92 +1,93 @@
 package com.edu_manage.education_management.entity;
 
+import java.util.Collection;
 import java.util.List;
 import java.util.Set;
+import java.util.UUID;
 
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Component;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.Inheritance;
+import jakarta.persistence.InheritanceType;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
-
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Entity
 @Table(name = "emsuser")
-public class EMSUser {
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+@Inheritance(strategy = InheritanceType.JOINED)
+@Builder
+public class EMSUser implements UserDetails{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "user_id")
     private Long userId;
+
     private String email;
     private String phone;
     private String name;
     private String password;
     private boolean status;
+
+    @ManyToOne
+    @JoinColumn(name = "role_id")
+    private Role role;
+
     // private Set<Role> role;
 
 
         // Getters, setters, constructors
     
-    public EMSUser(Long userId, String email, String phone, String name, String password, boolean status) {
-        this.userId = userId;
-        this.email = email;
-        this.phone = phone;
-        this.name = name;
-        this.password = password;
-        this.status = status;
-        System.out.println("instance created");
+    
+    
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        return List.of(new SimpleGrantedAuthority(role.getRole()));
     }
-    public EMSUser() {
-        //TODO Auto-generated constructor stub
-    }
-    public Long getUserId() {
-        return userId;
-    }
-    public void setUserId(Long userId) {
-        this.userId = userId;
-    }
-    public boolean isStatus() {
-        return status;
-    }
-    public void setStatus(boolean status) {
-        this.status = status;
-    }
-    public String getEmail() {
+    @Override
+    public String getUsername() {
+
         return email;
-    }
-    public void setEmail(String email) {
-        this.email = email;
-    }
-    public String getPhone() {
-        return phone;
-    }
-    public void setPhone(String phone) {
-        this.phone = phone;
-    }
-    public String getName() {
-        return name;
-    }
-    public void setName(String name) {
-        this.name = name;
-    }
-    public String getPassword() {
-        return password;
-    }
-    public void setPassword(String bCryptPasswordEncoder) {
-        this.password = bCryptPasswordEncoder;
-    }
-    public List<Role> getRoles() {
-        
         // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getRoles'");
+        
     }
-    // public void setRoles(Set<Role> singleton) {
-    //     this.role = singleton;
-    //     // TODO Auto-generated method stub
-    //     throw new UnsupportedOperationException("Unimplemented method 'setRoles'");
-    // }
+    @Override
+    public boolean isAccountNonExpired() {
+        // TODO Auto-generated method stub
+        return true;
+    }
+    @Override
+    public boolean isAccountNonLocked() {
+        // TODO Auto-generated method stub
+        return true;
+    }
+    @Override
+    public boolean isCredentialsNonExpired() {
+        // TODO Auto-generated method stub
+        return true;
+    }
+    @Override
+    public boolean isEnabled() {
+        // TODO Auto-generated method stub
+        return true;
+    }
+    
 
 
     
