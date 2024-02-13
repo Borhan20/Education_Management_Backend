@@ -47,7 +47,8 @@ public class AuthenticationService {
     //generate token when register
     public AuthenticationResponse register(RegisterRequest request) {
 
-        //make a user with necessary details
+        //make a
+        // user with necessary details
         var user = EMSUser.builder()
                 .phone(request.getPhone())
                 .name(request.getName())

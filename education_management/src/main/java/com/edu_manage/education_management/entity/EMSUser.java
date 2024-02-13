@@ -35,7 +35,7 @@ import lombok.NoArgsConstructor;
 @Builder
 public class EMSUser implements UserDetails{
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+
     @Column(name = "user_id")
     private UUID userId;
 
@@ -52,10 +52,10 @@ public class EMSUser implements UserDetails{
     // private Set<Role> role;
 
 
-        // Getters, setters, constructors
-    
-    
-    
+    // Getters, setters, constructors
+
+
+
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return List.of(new SimpleGrantedAuthority(role.getRole()));
@@ -65,7 +65,7 @@ public class EMSUser implements UserDetails{
 
         return email;
         // TODO Auto-generated method stub
-        
+
     }
     @Override
     public boolean isAccountNonExpired() {
@@ -87,8 +87,8 @@ public class EMSUser implements UserDetails{
         // TODO Auto-generated method stub
         return true;
     }
-    
 
 
-    
+
+
 }

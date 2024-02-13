@@ -28,8 +28,8 @@ import lombok.RequiredArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class Student extends EMSUser{
-    
-    
+
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private UUID userId;
@@ -41,16 +41,14 @@ public class Student extends EMSUser{
 
     private String departmentName;
 
-    
-    private Long advisorId;
-    private String studentId;
+
     private String batchNo;
-    
+
     @ManyToOne
     @JoinColumn(name = "advisor_id")
     private Teacher advisor;
 
 
 
-    
+
 }
