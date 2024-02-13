@@ -29,7 +29,7 @@ public class Teacher extends EMSUser{
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long userId;
+    private UUID userId;
 
     @OneToOne
     @JoinColumn(name = "user_id", referencedColumnName = "user_id")

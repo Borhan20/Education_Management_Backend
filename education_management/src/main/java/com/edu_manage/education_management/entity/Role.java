@@ -15,6 +15,7 @@ import lombok.NoArgsConstructor;
 
 
 
+@Entity
 @Table(name = "role")
 @NoArgsConstructor
 @AllArgsConstructor

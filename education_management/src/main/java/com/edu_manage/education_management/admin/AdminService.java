@@ -40,7 +40,7 @@ public class AdminService {
         return studentRepository.findAll();
     }
 
-    public void addRoleToUser(Long userId, String roleName) {
+    public void addRoleToUser(UUID userId, String roleName) {
         EMSUser user = userRepository.findById(userId).orElseThrow(() -> new EntityNotFoundException("User not found"));
         Role role = roleRepository.findByRole(roleName).orElseThrow(() -> new EntityNotFoundException("Role not found"));
 
@@ -48,7 +48,7 @@ public class AdminService {
         userRepository.save(user);
     }
 
-    public void deactivateUser(Long userId) {
+    public void deactivateUser(UUID userId) {
         EMSUser user = userRepository.findById(userId).orElseThrow(() -> new EntityNotFoundException("User not found"));
         user.setStatus(false);
         userRepository.save(user);

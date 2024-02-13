@@ -32,13 +32,13 @@ public class AdminController {
     }
 
     @PostMapping("/add-role/{userId}")
-    public ResponseEntity<String> addRoleToUser(@PathVariable Long userId, @RequestParam String roleName) {
+    public ResponseEntity<String> addRoleToUser(@PathVariable UUID userId, @RequestParam String roleName) {
         adminService.addRoleToUser(userId, roleName);
         return ResponseEntity.ok("Role added successfully");
     }
 
     @PostMapping("/deactivate-user/{userId}")
-    public ResponseEntity<String> deactivateUser(@PathVariable Long userId) {
+    public ResponseEntity<String> deactivateUser(@PathVariable UUID userId) {
         adminService.deactivateUser(userId);
         return ResponseEntity.ok("User deactivated successfully");
     }

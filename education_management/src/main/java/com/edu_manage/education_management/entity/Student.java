@@ -27,12 +27,12 @@ import lombok.RequiredArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class Student extends EMSUser{ 
+public class Student extends EMSUser{
     
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long userId;
+    private UUID userId;
 
 
     @OneToOne
@@ -47,7 +47,7 @@ public class Student extends EMSUser{
     private String batchNo;
     
     @ManyToOne
-    @JoinColumn(name = "advisor_id", referencedColumnName = "user_id")
+    @JoinColumn(name = "advisor_id")
     private Teacher advisor;
 
 

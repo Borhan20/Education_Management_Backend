@@ -1,5 +1,6 @@
 package com.edu_manage.education_management.service;
 
+import com.edu_manage.education_management.entity.EMSUser;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
@@ -29,24 +30,16 @@ public class JwtService {
         return claimsResolver.apply(claims);
     }
 
-    public String generateToken(Object user){
-        return generateToken(new HashMap<>(), user);
+    public String generateToken(UserDetails userDetails){
+        return generateToken(new HashMap<>(), userDetails);
     }
-    public String generateToken(HashMap<Object, Object> hashMap, Object user) {
-        // Convert HashMap<Object, Object> to Map<String, Object>
-        Map<String, Object> claimsMap = new HashMap<>();
-        for (Map.Entry<Object, Object> entry : hashMap.entrySet()) {
-            claimsMap.put(entry.getKey().toString(), entry.getValue());
-        }
-        Claims claims = Jwts.claims();
-        claims.putAll(claimsMap);
 
-    
+    public String generateToken(Map<String, Object> extraClaims, UserDetails userDetails){
         return Jwts.builder()
-                .setClaims(claims)
-                .setSubject(((UserDetails) user).getUsername())
+                .setClaims(extraClaims)
+                .setSubject(userDetails.getUsername())
                 .setIssuedAt(new Date(System.currentTimeMillis()))
-                .setExpiration(new Date(System.currentTimeMillis() + 1000 * 60 * 24 * 7))
+                .setExpiration(new Date(System.currentTimeMillis() + 1000 * 60 *24 * 7))
                 .signWith(getSigninKey(), SignatureAlgorithm.HS256)
                 .compact();
     }
