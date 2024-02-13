@@ -36,9 +36,4 @@ public class StudentController {
     }
     
 
-@PostMapping("/authenticate")
-    public ResponseEntity<Object> register(@RequestBody AuthenticationRequest request){
-
-        return ResponseEntity.ok(studentService.authenticate(request));
-    }
 }

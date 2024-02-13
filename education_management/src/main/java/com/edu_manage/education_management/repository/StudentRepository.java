@@ -14,12 +14,5 @@ import com.edu_manage.education_management.entity.Student;
 public interface StudentRepository extends JpaRepository<Student, UUID> {
     List<Student> findByUser_StatusTrue();
 
-    Optional<User> findByEmail(String email);
-
-    boolean existsByEmail(String email);
-
-    boolean findByName(String username);
-    
-
     
 }

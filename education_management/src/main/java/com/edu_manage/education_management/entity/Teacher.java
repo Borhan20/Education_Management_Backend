@@ -38,6 +38,9 @@ public class Teacher{
     private String facultyName;
     private String designation;
 
+
+
+
     // Relationships
     @OneToMany(mappedBy = "advisor")
     private Set<Student> advisees;
