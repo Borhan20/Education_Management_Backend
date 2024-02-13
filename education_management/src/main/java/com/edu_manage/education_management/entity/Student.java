@@ -1,53 +1,48 @@
 package com.edu_manage.education_management.entity;
 
-import java.util.UUID;
-
-import org.springframework.data.annotation.Id;
-import org.springframework.stereotype.Component;
-
+import jakarta.persistence.Id;
 import jakarta.persistence.Column;
-import jakarta.persistence.EmbeddedId;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
-import lombok.RequiredArgsConstructor;
 
+import java.util.UUID;
 
 @Entity
 @Table(name = "student")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class Student extends EMSUser{
+public class Student  {
 
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "user_id")
     private UUID userId;
 
 
     @OneToOne
-    @JoinColumn(name = "user_id", referencedColumnName = "user_id")
+    @JoinColumn(name = "ems_user_id", referencedColumnName = "user_id")
     private EMSUser user;
 
     private String departmentName;
 
+    private String name;
+    private String email;
 
     private String batchNo;
 
     @ManyToOne
     @JoinColumn(name = "advisor_id")
     private Teacher advisor;
-
 
 
 

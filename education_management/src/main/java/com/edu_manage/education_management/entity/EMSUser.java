@@ -31,11 +31,9 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Inheritance(strategy = InheritanceType.JOINED)
 @Builder
 public class EMSUser implements UserDetails{
     @Id
-
     @Column(name = "user_id")
     private UUID userId;
 
