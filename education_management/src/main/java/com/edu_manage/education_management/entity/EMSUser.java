@@ -89,6 +89,7 @@ public class EMSUser implements UserDetails{
 
 
     public void setAdminRoles(Role adminRole) {
-        this.role = adminRole;
-    }
+       this.role = adminRole;
+       System.out.println(adminRole);
+   }
 }

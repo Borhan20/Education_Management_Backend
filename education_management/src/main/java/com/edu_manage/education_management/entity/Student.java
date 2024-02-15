@@ -35,7 +35,7 @@ public class Student  {
 
     private String departmentName;
 
-
+    private String studentId;
 
     private String batchNo;
 

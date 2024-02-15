@@ -40,7 +40,6 @@ public class Teacher{
 
 
 
-
     // Relationships
     @OneToMany(mappedBy = "advisor")
     private Set<Student> advisees;

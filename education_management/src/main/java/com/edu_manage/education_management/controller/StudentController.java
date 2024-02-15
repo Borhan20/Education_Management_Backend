@@ -7,11 +7,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import com.edu_manage.education_management.auth.AuthenticationRequest;
 //import com.edu_manage.education_management.auth.AuthenticationRequest;
@@ -28,6 +24,12 @@ import org.springframework.stereotype.Service;
 public class StudentController {
     @Autowired
     private StudentService studentService;
+
+    @GetMapping("/test")
+    @ResponseBody
+    public String getTest(){
+        return "tested successfully";
+    }
 
     // Implement endpoints for teacher-related operations
     @GetMapping("/active-teachers")

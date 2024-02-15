@@ -42,6 +42,7 @@
              return roleRepository.save(role);
          });
 
+
          EMSUser adminUser = userRepository.findByEmail("admin@example.com").orElseGet(() -> {
              EMSUser user = new EMSUser();
              user.setUserId(UUID.randomUUID());
