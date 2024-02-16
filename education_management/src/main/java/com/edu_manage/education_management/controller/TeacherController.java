@@ -10,7 +10,7 @@ import com.edu_manage.education_management.entity.Teacher;
 import com.edu_manage.education_management.service.TeacherService;
 
 @RestController
-@RequestMapping("/api/teachers")
+@RequestMapping("/teachers")
 public class TeacherController {
     @Autowired
     private TeacherService teacherService;

@@ -47,6 +47,8 @@
              EMSUser user = new EMSUser();
              user.setUserId(UUID.randomUUID());
              user.setEmail("admin@example.com");
+             user.setName("admin");
+             user.setPhone("0123444");
              // Set other user details
              user.setPassword(passwordEncoder.encode("adminpassword"));
              user.setStatus(true);

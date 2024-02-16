@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.edu_manage.education_management.service.RoleService;
 
 @RestController
-@RequestMapping("/api/roles")
+@RequestMapping("/roles")
 public class RoleController {
     @Autowired
     private RoleService roleService;

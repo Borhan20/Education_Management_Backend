@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.edu_manage.education_management.service.UserService;
 
 @RestController
-@RequestMapping("/api/users")
+@RequestMapping("/users")
 public class UserController {
     @Autowired
     private UserService userService;

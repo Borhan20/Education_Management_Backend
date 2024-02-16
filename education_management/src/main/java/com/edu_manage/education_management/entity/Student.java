@@ -29,8 +29,9 @@ public class Student  {
     private UUID userId;
 
 
+
     @OneToOne
-    @JoinColumn(name = "ems_user_id", referencedColumnName = "user_id")
+    @JoinColumn(name = "ems_user_id")
     private EMSUser user;
 
     private String departmentName;

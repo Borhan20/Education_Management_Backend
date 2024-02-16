@@ -5,6 +5,7 @@ import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.ListCrudRepository;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.edu_manage.education_management.entity.EMSUser;
@@ -32,12 +33,93 @@ public class AdminService {
     @Autowired
     private StudentRepository studentRepository;
 
+    @Autowired
+    private PasswordEncoder passwordEncoder;
+
     public List<Teacher> getAllTeachers() {
         return teacherRepository.findAll();
     }
 
     public List<Student> getAllStudents() {
         return studentRepository.findAll();
+    }
+
+    // creating a new student with student role
+    public void createStudents(UUID userId,String email,String phone,String name,
+                               String password,String department,String studentId,String batchNo){
+
+
+        Role studentRole = roleRepository.findByRole("STUDENT").orElseGet(() -> {
+            Role role = new Role();
+            role.setRole("STUDENT");
+            role.setDescription("Student Role");
+            return roleRepository.save(role);
+        });
+
+
+        EMSUser emsUser = userRepository.findByEmail(email).orElseGet(() -> {
+            EMSUser user = new EMSUser();
+            user.setUserId(userId);
+            user.setEmail(email);
+            user.setName(name);
+            user.setPhone(phone);
+            // Set other user details
+            user.setPassword(passwordEncoder.encode(password));
+            user.setStatus(true);
+            user.setRole(studentRole);
+            return userRepository.save(user);
+
+        });
+
+        Student student = studentRepository.findByStudentId(studentId).orElseGet(() ->{
+                Student new_student = new Student();
+                new_student.setUserId(userId);
+                new_student.setStudentId(studentId);
+                new_student.setBatchNo(batchNo);
+                new_student.setDepartmentName(department);
+                new_student.setUser(emsUser);
+                return studentRepository.save(new_student);
+        });
+    }
+
+
+    // creating a  new teacher as advisor role
+    public void createTeachers(UUID userId,String email,String phone,String name,
+                               String password,String faculty,String designation,
+                               String teacherId){
+
+
+        Role studentRole = roleRepository.findByRole("STUDENT").orElseGet(() -> {
+            Role role = new Role();
+            role.setRole("TEACHER");
+            role.setDescription("teacher Role");
+            return roleRepository.save(role);
+        });
+
+
+        EMSUser emsUser = userRepository.findByEmail(email).orElseGet(() -> {
+            EMSUser user = new EMSUser();
+            user.setUserId(userId);
+            user.setEmail(email);
+            user.setName(name);
+            user.setPhone(phone);
+            // Set other user details
+            user.setPassword(passwordEncoder.encode(password));
+            user.setStatus(true);
+            user.setRole(studentRole);
+            return userRepository.save(user);
+
+        });
+
+        Teacher teacher = teacherRepository.findByTeacherId(teacherId).orElseGet(() ->{
+            Teacher new_teacher = new Teacher();
+            new_teacher.setUserId(userId);
+            new_teacher.setFacultyName(faculty);
+            new_teacher.setDesignation(designation);
+            new_teacher.setTeacherId(teacherId);
+            new_teacher.setUser(emsUser);
+            return teacherRepository.save(new_teacher);
+        });
     }
 
     public void addRoleToUser(UUID userId, String roleName) {

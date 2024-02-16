@@ -37,8 +37,7 @@ public class Teacher{
 
     private String facultyName;
     private String designation;
-
-
+    private String teacherId;
 
     // Relationships
     @OneToMany(mappedBy = "advisor")

@@ -1,6 +1,7 @@
 package com.edu_manage.education_management.admin;
 
 import java.util.List;
+import java.util.Random;
 import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,7 +17,7 @@ import com.edu_manage.education_management.entity.Student;
 import com.edu_manage.education_management.entity.Teacher;
 
 @RestController
-@RequestMapping("/api/admin")
+@RequestMapping("/admin")
 public class AdminController {
     @Autowired
     private AdminService adminService;
@@ -29,6 +30,28 @@ public class AdminController {
     @GetMapping("/students")
     public List<Student> getAllStudents() {
         return adminService.getAllStudents();
+    }
+
+    //creating new student by admin by taking form parameters
+    @PostMapping("/create-students")
+    public ResponseEntity<String> createStudents(@RequestParam String email,@RequestParam String phone,
+                                                 @RequestParam String name,@RequestParam String password, @RequestParam String department,
+                                                 @RequestParam String studentId,@RequestParam String batchNo){
+
+        adminService.createStudents(UUID.randomUUID(),email,phone,
+                name,password,department,studentId,batchNo);
+        return ResponseEntity.ok("Student Created  successfully");
+    }
+
+    @PostMapping("/create-teachers")
+    public ResponseEntity<String> createTeachers(@RequestParam String email,@RequestParam String phone,
+                                                 @RequestParam String name,@RequestParam String password, @RequestParam String faculty,
+                                                 @RequestParam String designation,@RequestParam String teacherId){
+
+        adminService.createTeachers(UUID.randomUUID(), email,phone,
+                name,password, faculty,
+                designation,teacherId);
+        return ResponseEntity.ok("Student Created  successfully");
     }
 
     @PostMapping("/add-role/{userId}")
