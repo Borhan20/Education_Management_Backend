@@ -23,7 +23,8 @@ public class SecurityConfig {
         System.out.println("security filter executed");
         http.csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(requests -> requests
-                        .requestMatchers("/auth/**","/admin/create-students")
+                        .requestMatchers("/auth/**","/admin/create-teachers",
+                                "/admin/create-students","/students/99165e56-451d-418f-929c-1cccc4ade854/send-advisor-request")
                         .permitAll()
                         .anyRequest()
                         .authenticated()

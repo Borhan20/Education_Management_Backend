@@ -1,5 +1,6 @@
 package com.edu_manage.education_management.entity;
 
+import java.util.List;
 import java.util.Set;
 import java.util.UUID;
 
@@ -41,7 +42,7 @@ public class Teacher{
 
     // Relationships
     @OneToMany(mappedBy = "advisor")
-    private Set<Student> advisees;
+    private List<Student> advisees;
    
     
 }

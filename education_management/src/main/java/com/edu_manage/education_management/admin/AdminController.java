@@ -51,7 +51,7 @@ public class AdminController {
         adminService.createTeachers(UUID.randomUUID(), email,phone,
                 name,password, faculty,
                 designation,teacherId);
-        return ResponseEntity.ok("Student Created  successfully");
+        return ResponseEntity.ok("Teacher Created  successfully");
     }
 
     @PostMapping("/add-role/{userId}")

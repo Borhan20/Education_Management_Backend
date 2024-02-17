@@ -3,16 +3,15 @@ package com.edu_manage.education_management.service;
 import java.util.List;
 import java.util.UUID;
 
-import com.edu_manage.education_management.entity.EMSUser;
-import com.edu_manage.education_management.entity.Teacher;
+import com.edu_manage.education_management.entity.*;
 import com.edu_manage.education_management.repository.EMSUserRepository;
+import com.edu_manage.education_management.repository.StudentRequestRepository;
 import com.edu_manage.education_management.repository.TeacherRepository;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.edu_manage.education_management.auth.AuthenticationRequest;
-import com.edu_manage.education_management.entity.Student;
 import com.edu_manage.education_management.repository.StudentRepository;
 
 @Service
@@ -25,6 +24,9 @@ public class StudentService {
 
     @Autowired
     private TeacherRepository teacherRepository;
+
+    @Autowired
+    private StudentRequestRepository studentRequestRepository;
 
     public List<Student> getActiveStudents() {
         return studentRepository.findByUser_StatusTrue();
@@ -53,12 +55,18 @@ public class StudentService {
     }
 
 
-    public void sendAdvisorRequest(UUID userId, Teacher teacher) {
+    public void sendAdvisorRequest(UUID userId, UUID teacherId) {
         Student student = studentRepository.findById(userId).orElse(null);
-        Teacher advisor = teacherRepository.findById(teacher.getUserId()).orElse(null);
+        Teacher advisor = teacherRepository.findById(teacherId).orElse(null);
+
 
         if (student != null && advisor != null) {
-            student.setAdvisor(teacher);
+            StudentRequest studentRequest = new StudentRequest();
+            studentRequest.setStudent(student);
+            studentRequest.setTeacher(advisor);
+            studentRequest.setStatus(StudentRequestStatus.PENDING);
+            studentRequestRepository.save(studentRequest);
+            student.setAdvisor(advisor);
             studentRepository.save(student);
         }
     }

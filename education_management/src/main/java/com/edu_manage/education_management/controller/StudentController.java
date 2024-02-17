@@ -66,8 +66,8 @@ public class StudentController {
     }
 
     @PostMapping("/{userId}/send-advisor-request")
-    public ResponseEntity<String> sendAdvisorRequest(@PathVariable UUID userId, @RequestBody Teacher teacher) {
-        studentService.sendAdvisorRequest(userId, teacher);
+    public ResponseEntity<String> sendAdvisorRequest(@PathVariable UUID userId, @RequestParam UUID teacherId) {
+        studentService.sendAdvisorRequest(userId, teacherId);
         return ResponseEntity.ok("Advisor request sent successfully");
     }
 

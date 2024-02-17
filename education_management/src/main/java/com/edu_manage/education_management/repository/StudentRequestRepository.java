@@ -13,4 +13,6 @@ public interface StudentRequestRepository extends JpaRepository<StudentRequest, 
 
 
     List<StudentRequest> findByTeacherUserIdAndStatus(UUID userId, StudentRequestStatus studentRequestStatus);
+
+    Optional<StudentRequest> findByStudentUserId(UUID studentId);
 }

@@ -64,8 +64,8 @@ public class TeacherService {
     }
 
 
-    public void acceptStudentRequest(UUID userId, StudentRequest request) {
-        StudentRequest new_request = studentRequestRepository.findById(request.getReuquestId()).orElse(null);
+    public void acceptStudentRequest(UUID userId, UUID studentId) {
+        StudentRequest new_request = studentRequestRepository.findByStudentUserId(studentId).orElse(null);
         if (new_request != null && new_request.getTeacher().getUserId().equals(userId) && new_request.getStatus() == StudentRequestStatus.PENDING) {
             new_request.setStatus(StudentRequestStatus.ACCEPTED);
             studentRequestRepository.save(new_request);
@@ -73,8 +73,8 @@ public class TeacherService {
     }
 
 
-    public void dismissStudentRequest(UUID userId, StudentRequest request) {
-        StudentRequest new_request = studentRequestRepository.findById(request.getReuquestId()).orElse(null);
+    public void dismissStudentRequest(UUID userId, UUID studentId) {
+        StudentRequest new_request = studentRequestRepository.findByStudentUserId(studentId).orElse(null);
         if (new_request != null && new_request.getTeacher().getUserId().equals(userId) && new_request.getStatus() == StudentRequestStatus.PENDING) {
             new_request.setStatus(StudentRequestStatus.DISMISSED);
             studentRequestRepository.save(new_request);
@@ -87,6 +87,15 @@ public class TeacherService {
     }
 
     public void removeStudentFromAdvisorList(UUID userId, UUID studentId) {
-        // Implementation to remove student from advisor list
+        Teacher teacher = teacherRepository.findById(userId).orElse(null);
+        if (teacher != null) {
+            List<Student> advisorStudents = teacher.getAdvisees();
+
+            // Remove the student with the specified studentId from the advisorStudents list
+            advisorStudents.removeIf(del_student -> del_student.getUser().getUserId().equals(studentId));
+
+            // Save the updated teacher entity
+            teacherRepository.save(teacher);
+        }
     }
 }

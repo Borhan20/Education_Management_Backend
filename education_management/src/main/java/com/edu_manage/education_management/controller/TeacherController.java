@@ -57,14 +57,14 @@ public class TeacherController {
     }
 
     @PostMapping("/{userId}/accept-request")
-    public ResponseEntity<String> acceptStudentRequest(@PathVariable UUID userId, @RequestBody StudentRequest request) {
-        teacherService.acceptStudentRequest(userId, request);
+    public ResponseEntity<String> acceptStudentRequest(@PathVariable UUID userId, @RequestParam UUID studentId) {
+        teacherService.acceptStudentRequest(userId, studentId);
         return ResponseEntity.ok("Student request accepted");
     }
 
     @PostMapping("/{userId}/dismiss-request")
-    public ResponseEntity<String> dismissStudentRequest(@PathVariable UUID userId, @RequestBody StudentRequest request) {
-        teacherService.dismissStudentRequest(userId, request);
+    public ResponseEntity<String> dismissStudentRequest(@PathVariable UUID userId, @RequestParam UUID studentId) {
+        teacherService.dismissStudentRequest(userId, studentId);
         return ResponseEntity.ok("Student request dismissed");
     }
 
