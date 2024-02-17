@@ -36,6 +36,7 @@ public class AdminService {
     @Autowired
     private PasswordEncoder passwordEncoder;
 
+
     public List<Teacher> getAllTeachers() {
         return teacherRepository.findAll();
     }
@@ -125,7 +126,29 @@ public class AdminService {
     public void addRoleToUser(UUID userId, String roleName) {
         EMSUser user = userRepository.findById(userId).orElseThrow(() -> new EntityNotFoundException("User not found"));
         Role role = roleRepository.findByRole(roleName).orElseThrow(() -> new EntityNotFoundException("Role not found"));
+        if(roleName == "STUDENT" && user.getRole().getRole()=="TEACHER"){
 
+            //new student entry
+            Student newStudent = new Student();
+            newStudent.setUserId(userId);
+            newStudent.setUser(user);
+
+
+            //delete old teacher entry
+            teacherRepository.deleteByUserId(userId);
+
+        }
+        if(roleName == "TEACHER" && user.getRole().getRole()=="STUDENT"){
+
+            //new teacher entry
+            Teacher newTeacher = new Teacher();
+            newTeacher.setUserId(userId);
+            newTeacher.setUser(user);
+
+            //delete old student entry
+            studentRepository.deleteByUserId(userId);
+
+        }
         user.getRole().add(role);
         userRepository.save(user);
     }
