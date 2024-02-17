@@ -6,6 +6,7 @@ import java.util.Optional;
 import java.util.UUID;
 
 import com.edu_manage.education_management.entity.EMSUser;
+import org.hibernate.mapping.Set;
 import org.springframework.boot.autoconfigure.security.SecurityProperties.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Component;
@@ -17,4 +18,6 @@ public interface StudentRepository extends JpaRepository<Student, UUID> {
 
 
     Optional<Student> findByStudentId(String string);
+
+    List<Student> findByAdvisorUserId(UUID userId);
 }

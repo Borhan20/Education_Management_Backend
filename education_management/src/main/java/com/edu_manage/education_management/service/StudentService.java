@@ -1,7 +1,13 @@
 package com.edu_manage.education_management.service;
 
 import java.util.List;
+import java.util.UUID;
 
+import com.edu_manage.education_management.entity.EMSUser;
+import com.edu_manage.education_management.entity.Teacher;
+import com.edu_manage.education_management.repository.EMSUserRepository;
+import com.edu_manage.education_management.repository.TeacherRepository;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,12 +20,46 @@ public class StudentService {
     @Autowired
     private StudentRepository studentRepository;
 
+    @Autowired
+    private EMSUserRepository emsUserRepository;
+
+    @Autowired
+    private TeacherRepository teacherRepository;
+
     public List<Student> getActiveStudents() {
         return studentRepository.findByUser_StatusTrue();
     }
 
-    public Object authenticate(AuthenticationRequest request) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'authenticate'");
+    public Student getStudentById(UUID userId) {
+        return studentRepository.findById(userId).orElse(null);
+    }
+
+    public void editProfile(UUID userId, EMSUser updatedStudent) {
+        EMSUser existingStudent = emsUserRepository.findById(userId).orElse(null);
+        if (existingStudent != null) {
+            // Assuming you have a copyProperties method to copy relevant properties
+            BeanUtils.copyProperties(updatedStudent, existingStudent, "userId");
+            emsUserRepository.save(existingStudent);
+        }
+    }
+
+    public void resetPassword(UUID userId, String newPassword) {
+        EMSUser student = emsUserRepository.findById(userId).orElse(null);
+        if (student != null) {
+            // Assuming you have a setPassword method in your Student entity
+            student.setPassword(newPassword);
+            emsUserRepository.save(student);
+        }
+    }
+
+
+    public void sendAdvisorRequest(UUID userId, Teacher teacher) {
+        Student student = studentRepository.findById(userId).orElse(null);
+        Teacher advisor = teacherRepository.findById(teacher.getUserId()).orElse(null);
+
+        if (student != null && advisor != null) {
+            student.setAdvisor(teacher);
+            studentRepository.save(student);
+        }
     }
 }
