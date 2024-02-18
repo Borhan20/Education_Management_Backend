@@ -17,5 +17,7 @@ public interface TeacherRepository extends JpaRepository<Teacher, UUID> {
     Optional<Teacher> findByTeacherId(String string);
 
     void deleteByUserId(UUID userId);
+    List<Teacher> findAll();
+
 
 }

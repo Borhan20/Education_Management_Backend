@@ -24,7 +24,7 @@ public class SecurityConfig {
         http.csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(requests -> requests
                         .requestMatchers("/auth/**","/admin/create-teachers",
-                                "/admin/create-students","/students/99165e56-451d-418f-929c-1cccc4ade854/send-advisor-request")
+                                "/admin/create-students")
                         .permitAll()
                         .anyRequest()
                         .authenticated()

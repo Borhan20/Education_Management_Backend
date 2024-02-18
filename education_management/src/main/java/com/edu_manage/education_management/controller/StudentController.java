@@ -2,6 +2,7 @@ package com.edu_manage.education_management.controller;
 
 import java.util.List;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 import com.edu_manage.education_management.entity.EMSUser;
 import com.edu_manage.education_management.repository.TeacherRepository;
@@ -33,17 +34,33 @@ public class StudentController {
     private TeacherService teacherService;
 
     @GetMapping("/test")
-    @ResponseBody
     public String getTest(){
         return "tested successfully";
     }
 
     // Implement endpoints for teacher-related operations
+//    @GetMapping("/active-teachers")
+//
+////    public List<Teacher> getActiveTeachers() {
+////        return teacherService.getActiveTeachers();
+////    }
     @GetMapping("/active-teachers")
-    public List<Teacher> getActiveTeachers() {
-        return teacherService.getActiveTeachers();
-    }
+    public ResponseEntity<?> getActiveTeachers() {
 
+        TeacherDTO teacherDTO = new TeacherDTO();
+
+        List<Teacher> teacherList = teacherService.getActiveTeachers();
+
+        List<TeacherDTO> teacherDTOList = teacherList.stream()
+                .map(teacher -> new TeacherDTO(teacher.getUserId(), teacher.getFacultyName(), teacher.getDesignation(), teacher.getTeacherId(),teacher.getUser()))
+                .collect(Collectors.toList());
+
+//        teacherDTO.setFacultyName(teacherList.get(0).getFacultyName());
+//        //teacherDTO.setEmsUserId(teacherList.get(0).getUserId());
+//        teacherDTO.setTeacherId(teacherList.get(0).getTeacherId());
+        System.out.println(teacherList.get(0).getFacultyName());
+        return ResponseEntity.ok(teacherDTOList);
+    }
 
     //the below method represent student can view his profile
     @GetMapping("/{userId}/profile")

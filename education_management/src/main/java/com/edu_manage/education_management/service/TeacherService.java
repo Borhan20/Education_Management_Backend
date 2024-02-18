@@ -32,6 +32,7 @@ public class TeacherService {
     private StudentRequestRepository studentRequestRepository;
 
     public List<Teacher> getActiveTeachers() {
+
         return teacherRepository.findByUser_StatusTrue();
     }
 

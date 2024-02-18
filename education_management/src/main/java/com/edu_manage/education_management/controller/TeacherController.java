@@ -27,9 +27,16 @@ public class TeacherController {
 
 
     // Implement endpoints for teacher-related operations
+//    @GetMapping("/active-teachers")
+//    public List<Teacher> getActiveTeachers() {
+//
+//        return teacherService.getActiveTeachers();
+//    }
+
     @GetMapping("/active-teachers")
-    public List<Teacher> getActiveTeachers() {
-        return teacherService.getActiveTeachers();
+    public ResponseEntity<List<Teacher>> getActiveTeachers() {
+        List<Teacher> teacherList = teacherService.getActiveTeachers();
+        return ResponseEntity.ok(teacherList);
     }
 
     @GetMapping("/{userId}/profile")

@@ -25,6 +25,7 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
+
 public class Teacher{
 
     @Id
@@ -43,6 +44,16 @@ public class Teacher{
     // Relationships
     @OneToMany(mappedBy = "advisor")
     private List<Student> advisees;
-   
-    
+
+    @Override
+    public String toString() {
+        return "Teacher{" +
+                "userId=" + userId +
+                ", user=" + user +
+                ", facultyName='" + facultyName + '\'' +
+                ", designation='" + designation + '\'' +
+                ", teacherId='" + teacherId + '\'' +
+                ", advisees=" + advisees +
+                '}';
+    }
 }

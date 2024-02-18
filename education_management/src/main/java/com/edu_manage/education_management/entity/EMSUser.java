@@ -47,6 +47,18 @@ public class EMSUser implements UserDetails{
     // Getters, setters, constructors
 
 
+    @Override
+    public String toString() {
+        return "EMSUser{" +
+                "userId=" + userId +
+                ", email='" + email + '\'' +
+                ", phone='" + phone + '\'' +
+                ", name='" + name + '\'' +
+                ", password='" + password + '\'' +
+                ", status=" + status +
+                ", role=" + role +
+                '}';
+    }
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
