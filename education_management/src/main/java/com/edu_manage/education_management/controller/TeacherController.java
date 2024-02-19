@@ -1,5 +1,6 @@
 package com.edu_manage.education_management.controller;
 
+import com.edu_manage.education_management.Dto.TeacherDTO;
 import com.edu_manage.education_management.entity.Student;
 import com.edu_manage.education_management.entity.StudentRequest;
 import com.edu_manage.education_management.repository.StudentRepository;
@@ -34,15 +35,14 @@ public class TeacherController {
 //    }
 
     @GetMapping("/active-teachers")
-    public ResponseEntity<List<Teacher>> getActiveTeachers() {
-        List<Teacher> teacherList = teacherService.getActiveTeachers();
-        return ResponseEntity.ok(teacherList);
+    public ResponseEntity<?> getActiveTeachers() {
+        return ResponseEntity.ok(teacherService.getActiveTeachers());
     }
 
     @GetMapping("/{userId}/profile")
-    public ResponseEntity<Teacher> viewProfile(@PathVariable UUID userId) {
-        Teacher teacher = teacherService.getTeacherById(userId);
-        return ResponseEntity.ok(teacher);
+    public ResponseEntity<?> viewProfile(@PathVariable UUID userId) {
+
+        return ResponseEntity.ok(teacherService.getTeacherById(userId));
     }
 
     @PutMapping("/{userId}/profile")
@@ -58,9 +58,9 @@ public class TeacherController {
     }
 
     @GetMapping("/{userId}/student-requests")
-    public ResponseEntity<List<StudentRequest>> getStudentRequests(@PathVariable UUID userId) {
-        List<StudentRequest> studentRequests = teacherService.getStudentRequests(userId);
-        return ResponseEntity.ok(studentRequests);
+    public ResponseEntity<?> getStudentRequests(@PathVariable UUID userId) {
+
+        return ResponseEntity.ok(teacherService.getStudentRequests(userId));
     }
 
     @PostMapping("/{userId}/accept-request")
@@ -76,9 +76,8 @@ public class TeacherController {
     }
 
     @GetMapping("/{userId}/advisor-students")
-    public ResponseEntity<List<Student>> getAdvisorStudents(@PathVariable UUID userId) {
-        List<Student> advisorStudents = teacherService.getAdvisorStudents(userId);
-        return ResponseEntity.ok(advisorStudents);
+    public ResponseEntity<?> getAdvisorStudents(@PathVariable UUID userId) {
+        return ResponseEntity.ok(teacherService.getAdvisorStudents(userId));
     }
 
     @PostMapping("/{userId}/remove-student")

@@ -1,4 +1,4 @@
-package com.edu_manage.education_management.controller;
+package com.edu_manage.education_management.Dto;
 
 import com.edu_manage.education_management.entity.EMSUser;
 import com.edu_manage.education_management.entity.Teacher;

@@ -23,12 +23,12 @@ public class AdminController {
     private AdminService adminService;
 
     @GetMapping("/teachers")
-    public List<Teacher> getAllTeachers() {
+    public List<?> getAllTeachers() {
         return adminService.getAllTeachers();
     }
 
     @GetMapping("/students")
-    public List<Student> getAllStudents() {
+    public List<?> getAllStudents() {
         return adminService.getAllStudents();
     }
 

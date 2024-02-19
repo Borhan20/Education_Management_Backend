@@ -47,30 +47,18 @@ public class StudentController {
     @GetMapping("/active-teachers")
     public ResponseEntity<?> getActiveTeachers() {
 
-        TeacherDTO teacherDTO = new TeacherDTO();
-
-        List<Teacher> teacherList = teacherService.getActiveTeachers();
-
-        List<TeacherDTO> teacherDTOList = teacherList.stream()
-                .map(teacher -> new TeacherDTO(teacher.getUserId(), teacher.getFacultyName(), teacher.getDesignation(), teacher.getTeacherId(),teacher.getUser()))
-                .collect(Collectors.toList());
-
-//        teacherDTO.setFacultyName(teacherList.get(0).getFacultyName());
-//        //teacherDTO.setEmsUserId(teacherList.get(0).getUserId());
-//        teacherDTO.setTeacherId(teacherList.get(0).getTeacherId());
-        System.out.println(teacherList.get(0).getFacultyName());
-        return ResponseEntity.ok(teacherDTOList);
+        return ResponseEntity.ok(teacherService.getActiveTeachers());
     }
 
     //the below method represent student can view his profile
     @GetMapping("/{userId}/profile")
-    public ResponseEntity<Student> viewProfile(@PathVariable UUID userId) {
-        Student student = studentService.getStudentById(userId);
-        return ResponseEntity.ok(student);
+    public ResponseEntity<?> viewProfile(@PathVariable UUID userId) {
+
+        return ResponseEntity.ok(studentService.getStudentById(userId));
     }
 
     //the below method shows student can edit his information
-    @PutMapping("/{userId}/profile")
+    @PutMapping("/{userId}/edit-profile")
     public ResponseEntity<String> editProfile(@PathVariable UUID userId, @RequestBody EMSUser updatedStudent) {
         studentService.editProfile(userId, updatedStudent);
         return ResponseEntity.ok("Profile updated successfully");
