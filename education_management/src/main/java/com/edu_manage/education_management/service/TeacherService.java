@@ -40,7 +40,7 @@ public class TeacherService {
             List<Teacher> teacherList = teacherRepository.findByUser_StatusTrue();
 
             return teacherList.stream()
-                    .map(teacher -> new TeacherDTO(teacher.getUserId(), teacher.getFacultyName(), teacher.getDesignation(), teacher.getTeacherId(), teacher.getUser()))
+                    .map(teacher -> new TeacherDTO(teacher.getUserId(), teacher.getFacultyName(), teacher.getDesignation(), teacher.getTeacherId(), teacher.getUser().getName()))
                     .collect(Collectors.toList());
         } catch (Exception e) {
             // Handle exception, you can log it or throw a custom exception if needed
@@ -58,7 +58,7 @@ public class TeacherService {
 
             if (teacher != null) {
                 teacherDTO.setUserId(teacher.getUserId());
-                teacherDTO.setEmsUser(teacher.getUser());
+                teacherDTO.setEmsUserName(teacher.getUser().getName());
                 teacherDTO.setTeacherId(teacher.getTeacherId());
                 teacherDTO.setDesignation(teacher.getDesignation());
                 teacherDTO.setFacultyName(teacher.getFacultyName());
@@ -100,7 +100,8 @@ public class TeacherService {
             List<StudentRequest> studentRequestsList = studentRequestRepository.findByTeacherUserIdAndStatus(userId, StudentRequestStatus.PENDING);
 
             return studentRequestsList.stream()
-                    .map(studentRequest -> new StudentRequestDTO(studentRequest.getReuquestId(), studentRequest.getStudent(), studentRequest.getTeacher(), studentRequest.getStatus()))
+                    .map(studentRequest -> new StudentRequestDTO(studentRequest.getReuquestId(), studentRequest.getStudent().getUser().getName(),
+                            studentRequest.getTeacher().getUser().getName(), studentRequest.getStatus()))
                     .collect(Collectors.toList());
         } catch (Exception e) {
             // Handle exception, you can log it or throw a custom exception if needed
@@ -143,7 +144,7 @@ public class TeacherService {
             List<Student> students = studentRepository.findByAdvisorUserId(userId);
 
             return students.stream()
-                    .map(student -> new StudentDTO(student.getUserId(), student.getUser(), student.getDepartmentName(), student.getStudentId(), student.getBatchNo(), student.getAdvisor()))
+                    .map(student -> new StudentDTO(student.getUserId(), student.getUser().getName(), student.getDepartmentName(), student.getStudentId(), student.getBatchNo(), student.getAdvisor()))
                     .collect(Collectors.toList());
         } catch (Exception e) {
             // Handle exception, you can log it or throw a custom exception if needed

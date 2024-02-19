@@ -13,7 +13,7 @@ import java.util.UUID;
 @NoArgsConstructor
 public class StudentDTO {
     private UUID userId;
-    private EMSUser emsUser;
+    private String emsUserName;
     private String department;
     private String batchNo;
     private String studentId;

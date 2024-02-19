@@ -14,8 +14,8 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class StudentRequestDTO {
     private Long requestId;
-    private Student student;
-    private Teacher teacher;
+    private String studentName;
+    private String teacherName;
     @Enumerated(EnumType.STRING)
     private StudentRequestStatus status;
 

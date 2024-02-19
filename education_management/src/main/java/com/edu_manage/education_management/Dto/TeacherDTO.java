@@ -14,17 +14,10 @@ import java.util.UUID;
 @NoArgsConstructor
 public class TeacherDTO {
     private UUID userId;
-    private EMSUser emsUser;
+    private String  emsUserName;
     private String facultyName;
     private String designation;
     private String teacherId;
 
 
-    public TeacherDTO(UUID userId, String facultyName, String designation, String teacherId,EMSUser emsUser) {
-        this.userId = userId;
-        this.emsUser = emsUser;
-        this.teacherId = teacherId;
-        this.facultyName = teacherId;
-        this.designation = designation;
-    }
 }

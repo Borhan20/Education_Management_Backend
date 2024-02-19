@@ -47,7 +47,7 @@ public class AdminService {
             List<Teacher> teacherList = teacherRepository.findByUser_StatusTrue();
 
             return teacherList.stream()
-                    .map(teacher -> new TeacherDTO(teacher.getUserId(), teacher.getFacultyName(), teacher.getDesignation(), teacher.getTeacherId(), teacher.getUser()))
+                    .map(teacher -> new TeacherDTO(teacher.getUserId(), teacher.getFacultyName(), teacher.getDesignation(), teacher.getTeacherId(), teacher.getUser().getName()))
                     .collect(Collectors.toList());
         } catch (Exception e) {
             // Handle exception, you can log it or throw a custom exception if needed
@@ -62,7 +62,7 @@ public class AdminService {
         try {
             List<Student> students = studentRepository.findAll();
             return students.stream()
-                    .map(student -> new StudentDTO(student.getUserId(), student.getUser(), student.getDepartmentName(), student.getStudentId(), student.getBatchNo(), student.getAdvisor()))
+                    .map(student -> new StudentDTO(student.getUserId(), student.getUser().getName(), student.getDepartmentName(), student.getStudentId(), student.getBatchNo(), student.getAdvisor()))
                     .collect(Collectors.toList());
         }
         catch (EntityNotFoundException e) {
