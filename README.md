@@ -62,13 +62,7 @@ Sure, to run your Spring Boot project, you need to follow these steps:<br>
 
 4. **Build and Run the Project:**
    - Build and run your Spring Boot application using your IDE or by running the following command in the project directory:
-     ```
-     ./mvnw spring-boot:run
-     ```
-     or for Windows:
-     ```
-     mvnw.cmd spring-boot:run
-     ```
+    
 
 5. **Access the Application:**
    - Once the application is running, you can access it in your web browser at `http://localhost:8080` (assuming the default Spring Boot port).
