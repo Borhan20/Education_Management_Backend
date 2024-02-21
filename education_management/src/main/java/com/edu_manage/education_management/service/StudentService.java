@@ -38,7 +38,8 @@ public class StudentService {
         try {
             List<Student> students = studentRepository.findByUser_StatusTrue();
             return students.stream()
-                    .map(student -> new StudentDTO(student.getUserId(), student.getUser().getName(), student.getDepartmentName(), student.getStudentId(), student.getBatchNo(), student.getAdvisor()))
+                    .map(student -> new StudentDTO(student.getUserId(), student.getUser().getName(), student.getDepartmentName(), student.getStudentId(), student.getBatchNo(),
+                            student.getAdvisor().getUser().getName(),student.getUser().getRole().getRole()))
                     .collect(Collectors.toList());
         }
         catch (EntityNotFoundException e) {
@@ -58,6 +59,8 @@ public class StudentService {
             studentDTO.setDepartment(student.getDepartmentName());
             studentDTO.setStudentId(student.getStudentId());
             studentDTO.setBatchNo(student.getBatchNo());
+            studentDTO.setAdvisorName(student.getAdvisor().getUser().getName());
+            studentDTO.setRoleName(student.getUser().getRole().getRole());
 
             return studentDTO;
         } catch (EntityNotFoundException e) {

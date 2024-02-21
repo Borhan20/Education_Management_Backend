@@ -9,6 +9,7 @@ import com.edu_manage.education_management.repository.TeacherRepository;
 import com.edu_manage.education_management.service.TeacherService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -26,6 +27,7 @@ import org.springframework.stereotype.Service;
 
 @RestController
 @RequestMapping("/students")
+@PreAuthorize("hasRole('STUDENT')")
 public class StudentController {
     @Autowired
     private StudentService studentService;

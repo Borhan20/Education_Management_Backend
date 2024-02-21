@@ -19,5 +19,5 @@ public class TeacherDTO {
     private String designation;
     private String teacherId;
 
-
+    private  String roleName;
 }
