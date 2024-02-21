@@ -33,8 +33,35 @@ Anyone can authenticate: http://localhost:8080/auth/authenticate<br>
 
 For Authentication used JWT token based authentication.<br>
 
-Sure, to run your Spring Boot project, you need to follow these steps:<br>
 
+
+Design Pattern Used: <br>
+
+1. Model-View-Controller (MVC) Pattern:
+   - You have entities such as `EMSUser`, `Role`, `Teacher`, and `Student`, which represent in  model.
+   - The functionalities for admins, teachers, and students indicate a clear separation of concerns between different user roles, following the MVC pattern.
+
+2. Repository Pattern:
+   -I have repositories (e.g., Spring Data JPA repositories) for each entity,  using the repository pattern to handle data access.
+
+3. Factory Method Pattern:
+   - When creating instances of entities like `EMSUser`, `Role`, `Teacher`, and `Student`, child class decide which class to instantiate.
+
+
+
+4. DTO (Data Transfer Object) Pattern:
+   - In Spring Boot application,  using DTOs to transfer data between the frontend (React) and backend, especially when dealing with views and forms.
+
+5. Observer Pattern:
+   - The interactions between teachers and students, such as accepting or dismissing requests, and viewing profiles, suggest a form of observer pattern where one entity observes changes in another.
+
+
+6. Singleton Pattern:
+   -  services or components that should exist only once in the application context (e.g., a default admin account creator),  using the singleton pattern.
+   -  Postgre connects in single instance that using singleton pattern.
+
+
+Sure, to run your Spring Boot project, you need to follow these steps:<br>
 ### Requirements:
 
 1. **Java Development Kit (JDK):**
