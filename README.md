@@ -38,7 +38,7 @@ For Authentication used JWT token based authentication.<br>
 Design Pattern Used: <br>
 
 1. Model-View-Controller (MVC) Pattern:
-   - You have entities such as `EMSUser`, `Role`, `Teacher`, and `Student`, which represent in  model.
+   - I have entities such as `EMSUser`, `Role`, `Teacher`, and `Student`, which represent in  model.
    - The functionalities for admins, teachers, and students indicate a clear separation of concerns between different user roles, following the MVC pattern.
 
 2. Repository Pattern:
