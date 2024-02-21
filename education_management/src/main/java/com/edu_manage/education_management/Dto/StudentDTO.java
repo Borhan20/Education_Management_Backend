@@ -17,5 +17,6 @@ public class StudentDTO {
     private String department;
     private String batchNo;
     private String studentId;
-    private Teacher advisor;
+    private String advisorName;
+    private String roleName;
 }

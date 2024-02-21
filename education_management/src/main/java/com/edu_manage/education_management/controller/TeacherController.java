@@ -9,6 +9,7 @@ import com.edu_manage.education_management.repository.TeacherRepository;
 import com.edu_manage.education_management.service.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -19,6 +20,7 @@ import com.edu_manage.education_management.service.TeacherService;
 
 @RestController
 @RequestMapping("/teachers")
+@PreAuthorize("hasRole('TEACHER')")
 public class TeacherController {
     @Autowired
     private  TeacherService teacherService;
